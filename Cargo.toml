@@ -1,0 +1,15 @@
+[package]
+name = "cli-app"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+clap = { version = "4.3.19", features = ["derive", "wrap_help"] }
+dialoguer = "0.10.4"
+dotenv = {version = "0.15.0", features = ["clap"]}
+indicatif = "0.17.5"
+reqwest = {version = "0.11.18", features = ["json", "blocking", "default-tls", "gzip", "stream", "deflate"]}
+serde = {version = "1.0.179", features = ["derive"]}
+serde_json = "1.0"
