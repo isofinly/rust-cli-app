@@ -99,18 +99,18 @@ fn json_to_formatted_string(v: Value) -> Result<String, Box<dyn Error>> {
     }
     for i in pods_amount {
         let pod = &v["queryresult"]["pods"][i as usize];
-        let title = pod["title"].as_str().unwrap_or("No title");
+        let title = pod["title"].as_str().unwrap_or("No information");
         formatted_string.push_str(&format!(
             "{}{}{}\n",
             "\x1b[33m",
             title.to_string(),
-            "\x1b[0m"
+            ":\x1b[0m"
         ));
         let num_subpods = pod["numsubpods"].as_u64().unwrap_or(0);
         for j in 0..num_subpods {
             let subpod = &pod["subpods"][j as usize];
-            let plaintext = subpod["plaintext"].as_str().unwrap_or("No plaintext");
-            formatted_string.push_str(&format!("{}\n", plaintext.to_string(),));
+            let plaintext = subpod["plaintext"].as_str().unwrap_or("No information");
+            formatted_string.push_str(&format!("\t{}\n", plaintext.to_string().replace("\n", "\n\t")));
         }
     }
     Ok(formatted_string)
